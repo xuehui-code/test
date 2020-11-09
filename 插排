@@ -1,0 +1,21 @@
+public static void insertSort(long[] array) {
+    for (int i = 0; i < array.length - 1; i++) {
+        // 有序 [0, i]
+        // 无序 [i + 1, array.length)
+        // 无序区间中的第一个数据是 [i + 1]
+ 
+        long key = array[i + 1];    //无序区间的第一个元素
+ 
+        // 依次在有序区间进行比较 [i, 0]
+        int j;
+        for (j = i; j >= 0; j--) {
+            // [j] 就是需要和 key 进行比较的数
+            if (key < array[j]) {
+                array[j + 1] = array[j];
+            } else {
+                break;
+            }
+        }
+        array[j + 1] = key;
+    }
+}
