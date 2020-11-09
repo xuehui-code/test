@@ -1,0 +1,24 @@
+    public static void bubbleSort(long[] array) {
+ 
+        // 需要多少次冒泡过程
+        for (int i = 0; i < array.length - 1; i++) {
+            // 无序： [0, array.length - i)
+            // 有序： [array.length - i, array.length)
+ 
+            // 每次冒泡之前，假设数组已经有序
+            boolean isSorted = true;
+ 
+            // 进行冒泡过程
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j, j + 1);
+ 
+                    isSorted = false;
+                }
+            }
+ 
+            if (isSorted) {
+                break;
+            }
+        }
+    }
