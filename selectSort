@@ -1,0 +1,17 @@
+    public static void selectSort(long[] array) {
+        // 一共多少次选择的过程
+        for (int i = 0; i < array.length - 1; i++) {
+            // 无序区间: [0, array.length - i)
+            // 有序区间: [array.length - i , array.length)
+ 
+            int maxIndex = 0;     // <-- 假设最大的数就是 array[0]
+            for (int j = 1; j < array.length - i; j++) {
+                if (array[j] > array[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            // 期望 maxIndex 指向无序区间的最大的数的下标
+ 
+            swap(array, maxIndex, array.length - i - 1);
+        }
+    }
