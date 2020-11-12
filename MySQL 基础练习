@@ -1,0 +1,78 @@
+学校食堂管理系统，包含食堂表，食堂仓口表，仓口收费记录表
+create table hall(
+    id int primary key,
+  name varchar(20)
+);
+
+create table hall_opening(
+    id int primary key,
+  name varchar(20),
+  hall_id int,
+  foreign key (hall_id) references hall(id)
+);
+
+create table info(
+   id int primary key,
+  price int,
+  info_date timestamp,
+  hall_opening_id int,
+  foreign key (hall_opening_id) references hall_opening(id)
+);
+
+
+
+车辆违章系统，包含用户表，车辆表，违章信息表。违章信息表中包含用户和车辆的违章信息
+create table user(
+   id int primary key,
+  name varchar(20)
+);
+
+create table cars(
+   id int primary key,
+  name varchar(20),
+  user_id int,
+  foreign key (user_id) references user(id)
+);
+
+create table info(
+   id int primary key,
+  user_id int,
+  cars_id int,
+  foreign key (user_id) references user(id),
+  foreign key (cars_id) references cars(id)
+);
+
+
+学校宿舍管理系统，要求包含宿舍信息，学生信息，每日的宿舍查房记录。
+create table dormitory(
+   id int primary key,
+  number varchar(20)
+);
+
+create table student(
+   id int primary key,
+  name varchar(20),
+  dormitory_id int,
+  foreign key (dormitory_id) references dormitory(id)
+);
+
+create table info(
+    id int primary key,
+  dormitory_id int,
+  status bit,
+  info_date timestamp,
+  foreign key (dormitory_id) references dormitory(id)
+);
+
+考勤系统，包含员工表，考勤记录表
+create table emp(
+    id int primary key,
+  name varchar(20)
+);
+
+create table info(
+    id int primary key,
+  emp_id int,
+  info_date timestamp,
+  foreign key (emp_id) references emp(id)
+);
