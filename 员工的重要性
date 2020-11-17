@@ -1,0 +1,28 @@
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+        Map<Integer, Employee> employeeMap = employees.stream().collect(Collectors.toMap(employee ->
+                        employee.id
+                , Function.identity()));
+
+        return helper(employeeMap, id);
+    }
+
+    private int helper(Map<Integer, Employee> employeeMap, int id) {
+        Employee current = employeeMap.get(id);
+        if (current == null) {
+            return 0;
+        }
+        int importance = current.importance;
+        List<Integer> subordinates = current.subordinates;
+        if (subordinates == null || subordinates.size() == 0) {
+            return importance;
+        }
+        for (int subId : subordinates) {
+            Employee subEmployee = employeeMap.get(subId);
+            if (subEmployee != null) {
+                importance += helper(employeeMap, subEmployee.id);
+            }
+        }
+        return importance;
+    }
+}
