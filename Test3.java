@@ -1,8 +1,9 @@
 package xuehui.jdbc.test;
 
+import java.math.BigDecimal;
 import java.sql.*;
 
-public class Test {
+public class Test3 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
 
@@ -12,17 +13,20 @@ public class Test {
 
         Statement statement = connection.createStatement();
 
-        String sql = "select id,sn,name,qq_mail,classes_id from student";
+        String sql =  "select stu.sn sn,stu.name name,cou.name coure,sco.score score" +
+                "   from score sco left join student stu on sco.student_id = stu.id " +
+                "   left join course cou on sco.course_id = cou.id" +
+                "   where stu.classes_id = 1" +
+                "   order by stu.sn;";
         ResultSet resultSet = statement.executeQuery(sql);
 
         while(resultSet.next()){
-            int id = resultSet.getInt("id");
             int sn = resultSet.getInt("sn");
             String name = resultSet.getString("name");
-            String qq_mail = resultSet.getString("qq_mail");
-            int classes_id = resultSet.getInt("classes_id");
-            System.out.printf("id=%s,sn=%s,name=%s,qq_name=%s,classes_id=%s%n",
-                    id,sn,name,qq_mail,classes_id);
+            String coure = resultSet.getString("coure");
+            BigDecimal score = resultSet.getBigDecimal("score");
+            System.out.printf("sn=%s,name=%s,cooure=%s,score=%s%n",
+                    sn,name,coure,score);
         }
         if (resultSet!=null){
             try{
@@ -48,6 +52,3 @@ public class Test {
         }
     }
 }
-
-
-
