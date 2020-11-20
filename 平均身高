@@ -1,0 +1,20 @@
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = null;
+        while((s = br.readLine())!=null){
+            String[] num = s.split(" ");
+            double a = Double.valueOf(num[0]);
+            double b = Double.valueOf(num[1]);
+            double c = Double.valueOf(num[2]);
+            double d = Double.valueOf(num[3]);
+            double e = Double.valueOf(num[4]);
+            
+            double sum = a+b+c+d+e;
+            double result = sum/5;
+            System.out.printf("%.2f",result);
+        }
+    }
+}
