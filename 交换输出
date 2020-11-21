@@ -1,0 +1,12 @@
+import java.io.*;
+
+public class Main{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        String[] s = str.split(",");
+        String[] s1 = s[0].split("=");
+        String[] s2 = s[1].split("=");
+        System.out.println(s1[0]+"="+s2[1]+","+s2[0]+"="+s1[1]);
+    }
+}
