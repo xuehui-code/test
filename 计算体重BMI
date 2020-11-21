@@ -1,0 +1,13 @@
+import java.io.*;
+
+public class Main{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        double weight = Double.parseDouble(str[0]);
+        double height = Double.parseDouble(str[1])/100;
+        double bmi = 0;
+        bmi = weight/(height*height);
+        System.out.println(String.format("%.2f",bmi));
+    }
+}
