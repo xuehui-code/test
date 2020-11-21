@@ -1,0 +1,8 @@
+import java.util.*;
+
+public class Main {
+     public static void main(String[] args){
+         System.out.printf("0"+Integer.toOctalString(1234)+" ");
+         System.out.printf("0X"+Integer.toHexString(1234).toUpperCase());
+     }
+}
