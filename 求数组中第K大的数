@@ -1,0 +1,64 @@
+public class Main {
+ 
+	public static int findKthMax(int[] arr, int k) {
+ 
+		if (arr == null || arr.length == 0 || k > arr.length) {
+			return Integer.MIN_VALUE;
+		}
+		int length = arr.length;
+		int start = 0;
+		int end = length - 1;
+		int index = partition(arr, start, end);
+		while (index != length - k) {
+			if (index > length - k) {
+				end = index - 1;
+				index = partition(arr, start, end);
+			} else {
+				start = index + 1;
+				index = partition(arr, start, end);
+			}
+		}
+		
+		return arr[index];
+ 
+	}
+ 
+	public static int partition(int[] arr, int start, int end) {
+ 
+		if (arr == null || arr.length == 0 || start < 0 || start >= arr.length || end < 0 || end >= arr.length
+				|| start > end) {
+			return -1;
+		}
+ 
+		int pivot = arr[start];
+		int left = start;
+
+		int right = end;
+		while (left < right) {
+
+			while (arr[left] <= pivot) {
+				left++;
+			}
+ 
+			while (arr[right] > pivot) {
+				right--;
+			}
+ 
+			if (left < right) {
+				swqp(arr, left, right);
+				left++;
+				right--;
+			}
+		}
+ 
+		arr[start] = arr[right];
+		arr[right] = pivot;
+		return right;
+	}
+ 
+	private static void swqp(int[] arr, int left, int right) {
+		int temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+	}
+}
