@@ -1,53 +1,35 @@
-package xuehui.jdbc.test;
-
-import java.sql.*;
+package org.example.test;
 
 public class Test {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
 
-        Connection connection = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/test1?user=root&password=420493&useUnicode=true&characterEncoding=UTF-8");
-        System.out.println(connection);
+    private static class P{
+        protected int x = 3; //protected 子类继承
 
-        Statement statement = connection.createStatement();
-
-        String sql = "select id,sn,name,qq_mail,classes_id from student";
-        ResultSet resultSet = statement.executeQuery(sql);
-
-        while(resultSet.next()){
-            int id = resultSet.getInt("id");
-            int sn = resultSet.getInt("sn");
-            String name = resultSet.getString("name");
-            String qq_mail = resultSet.getString("qq_mail");
-            int classes_id = resultSet.getInt("classes_id");
-            System.out.printf("id=%s,sn=%s,name=%s,qq_name=%s,classes_id=%s%n",
-                    id,sn,name,qq_mail,classes_id);
+        public P(){
+            System.out.println(x);
+            s();
+            System.out.println(x);
         }
-        if (resultSet!=null){
-            try{
-                resultSet.close();
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
-        }
-        if (statement!=null){
-            try {
-                statement.close();
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
-        }
-
-        if (connection!=null){
-            try {
-                connection.close();
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
+        protected void s(){
+            x = 4;
         }
     }
-}
 
+    private static class C extends P{
+        protected int x = 1;
+
+        public C(){
+            System.out.println(x);
+        }
+        protected void s(){
+            x = 6;
+        }
+    }
+
+    public static void main(String[] args) {
+        C c = new C();
+        System.out.println(c.x);
+    }
+}
 
 
