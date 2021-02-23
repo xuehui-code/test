@@ -1,12 +1,10 @@
-package lesson8;
-
 import java.io.*;
 
 public class FileInput {
 
     public static void main(String[] args) throws IOException {
 //        File file = new File("E:\\Workspace\\IDEA\\java40\\板书\\20201220.png");
-        File file = new File("E:\\Workspace\\IDEA\\java40\\板书\\CRUD进阶（2）.txt");
+//        File file = new File("E:\\Workspace\\IDEA\\java40\\板书\\CRUD进阶（2）.txt");
 
         //1. 文件输入字节流
 //        FileInputStream fis = new FileInputStream(file);
@@ -30,18 +28,25 @@ public class FileInput {
 //        }
 
         //3.缓冲流：缓冲字节输入、缓冲字符输入
-        FileInputStream fis = new FileInputStream(file);//文件字节输入流
-        //字节流转字符流，一定要经过字节字符转换流来转换，并且可以制定编码
-        //和文件编码格式要一致，否则会是乱码
-        InputStreamReader isr = new InputStreamReader(fis, "GBK");
-        BufferedReader br = new BufferedReader(isr);
-        String str;
-        while((str=br.readLine()) != null){
-            System.out.println(str);
-        }
-        //释放资源：反向释放
-        br.close();
-        isr.close();
-        fis.close();
+//        FileInputStream fis = new FileInputStream(file);//文件字节输入流
+//        //字节流转字符流，一定要经过字节字符转换流来转换，并且可以制定编码
+//        //和文件编码格式要一致，否则会是乱码
+//        InputStreamReader isr = new InputStreamReader(fis, "GBK");
+//        //缓冲字符输入流
+//        BufferedReader br = new BufferedReader(isr);
+//        String str;
+//        while((str=br.readLine()) != null){
+//            System.out.println(str);
+//        }
+//        //释放资源：反向释放
+//        br.close();
+//        isr.close();
+//        fis.close();
+
+        //3.缓冲流：缓冲字节输入、缓冲字符输入
+//        FileInputStream fis = new FileInputStream(file);//文件字节输入流
+//        //缓冲的字节输入流
+//        BufferedInputStream bis = new BufferedInputStream(fis);
+        //和之前字节输入流操作类似：操作byte[]
     }
 }
